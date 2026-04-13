@@ -6,11 +6,14 @@ class Noeud:
         self.gauche = None
         self.droite = None
 
+
+
 class ABR:
     """Structure principale pour gérer les mises dynamiquement[cite: 74, 102]."""
     """ installation des def de l'ABR """
     def __init__(self):
         self.racine = None
+
 
     def inserer(self, prix, joueur):
         """Insère une mise dans l'ABR."""
@@ -18,6 +21,7 @@ class ABR:
             self.racine = Noeud(prix, joueur)
         else:
             self._inserer_recursif(self.racine, prix, joueur)
+
 
     def _inserer_recursif(self, noeud, prix, joueur):
         if prix == noeud.prix:  # Si le prix existe déjà, on ajoute le joueur à la liste 
@@ -33,11 +37,6 @@ class ABR:
             else:
                 self._inserer_recursif(noeud.droite, prix, joueur)
 
-    def parcours_infixe(self):
-        """Affiche l'état de l'enchère par prix triés[cite: 46]."""
-        resultats = []
-        self._parcours_infixe_recursif(self.racine, resultats)
-        return resultats
 
     def _parcours_infixe_recursif(self, noeud, resultats):
         if noeud:
@@ -45,8 +44,16 @@ class ABR:
             resultats.append((noeud.prix, noeud.joueurs))
             self._parcours_infixe_recursif(noeud.droite, resultats)
 
+
+    def parcours_infixe(self):
+        """Affiche l'état de l'enchère par prix triés."""
+        resultats = []
+        self._parcours_infixe_recursif(self.racine, resultats)
+        return resultats
+
+
     def rechercher_successeur(self, prix):
-        """Trouve le prix immédiatement supérieur présent dans l'arbre[cite: 58]."""
+        """Trouve le prix immédiatement supérieur présent dans l'arbre."""
         courant = self.racine
         successeur = None
         while courant:
@@ -57,8 +64,9 @@ class ABR:
                 courant = courant.droite
         return successeur
 
+
     def rechercher_predecesseur(self, prix):
-        """Trouve le prix immédiatement inférieur présent dans l'arbre[cite: 59]."""
+        """Trouve le prix immédiatement inférieur présent dans l'arbre."""
         courant = self.racine
         predecesseur = None
         while courant:
