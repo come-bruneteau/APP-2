@@ -5,13 +5,12 @@ Ce projet s'inscrit dans le cadre de l'Apprentissage Par Problème (APP) du modu
 
 L'objectif est de développer le moteur d'enchères inversées pour la startup **LowBid**. Le principe du jeu est simple : **le plus bas prix unique gagne**. 
 Pour éviter que tous les joueurs ne misent 0 €, une "prime de risque" est appliquée : plus la mise est basse, plus elle coûte cher. Le coût d'une mise est calculé via la formule : 
-$cout\_mise(prix) = cout\_base + a/(prix+1)$
+$cout\_{mise}(prix) = cout\_{base} + a/(prix+1)$
 
 ## 📂 Structure du Projet
 Le projet est organisé de manière modulaire afin de séparer la logique de la structure de données, les règles de l'enchère et l'exécution :
 
 ```text
-APP2
 │
 ├── assets/                 # Jeux de données au format CSV
 │   ├── lowbid_manche_demo.csv
