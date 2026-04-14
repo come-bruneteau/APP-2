@@ -77,3 +77,22 @@ class ABR:
                 courant = courant.gauche
         return predecesseur
 
+    def _rechercher_plus_bas_unique_recursif(self, noeud):
+        if noeud is None:
+            return None, None
+        
+        # 1. On cherche d'abord dans le sous-arbre gauche (les prix les plus petits)
+        prix_gagnant, joueur_gagnant = self._rechercher_plus_bas_unique_recursif(noeud.gauche)
+        if prix_gagnant is not None:
+            return prix_gagnant, joueur_gagnant
+        
+        # 2. On vérifie le nœud courant (est-il unique ?)
+        if len(noeud.joueurs) == 1:
+            return noeud.prix, noeud.joueurs[0]
+        
+        # 3. S'il n'est pas unique, on cherche dans le sous-arbre droit
+        return self._rechercher_plus_bas_unique_recursif(noeud.droite)
+
+    def rechercher_plus_bas_unique(self):
+        """Recherche le plus bas prix proposé par une seule personne."""
+        return self._rechercher_plus_bas_unique_recursif(self.racine)
