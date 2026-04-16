@@ -3,12 +3,15 @@ import random
 import os
  
 class Dataset:
+
+#mode fichier csv
+
     def __init__(self, name, file_path=None, nb_joueurs=10, prix_max=20):
         self.name = name
         self.data = []
  
         if file_path:
-            #mode fichier csv
+
             if not file_path.endswith('.csv'):
                 raise ValueError("File path must end with '.csv'")
             if not os.path.exists(file_path):
@@ -17,9 +20,11 @@ class Dataset:
             with open(file_path, 'r') as f:
                 self.data = list(csv.reader(f, delimiter=','))
         else:
-    #mode génération aléatoire
             self.data = self._generer(nb_joueurs, prix_max)
- 
+
+        
+    #mode génération aléatoire
+
     def _generer(self, nb_joueurs, prix_max):
         """Génère un jeu de données aléatoire : chaque joueur propose un prix entier."""
         data = []

@@ -1,11 +1,12 @@
+import time
 from manager.dataset import Dataset
 from manager.enchere import EnchereLowBid
-from manager.simulation import simuler_multi_manches
+from simulation import simuler_multi_manches
 
 assets = [
-    "assets/lowbid_manche_demo.csv",
+    "assets/lowbid_stress_200k.csv",
     # "assets/lowbid_multi_manches_500x40.csv",
-    # "assets/lowbid_stress_200k.csv"
+    # "assets/lowbid_manche_demo.csv"
 ]
 
 def lancer_enchere(dataset):
@@ -34,11 +35,11 @@ def lancer_enchere(dataset):
 
 
 def menu():
-    print("=" * 40)
-    print("   BIENVENUE SUR LOWBID — Qui perd gagne !")
-    print("=" * 40)
+    print("=" * 15)
+    print("    LOWBID    ")
+    print("=" * 15)
     print("\nComment voulez-vous jouer ?")
-    print("  1. Charger une manche depuis un fichier CSV")
+    print("  1. Lancer un stresstest")
     print("  2. Générer une manche aléatoire")
     print("  3. Lancer la simulation multi-manches (500 manches)")
     print("  0. Quitter")
@@ -51,7 +52,12 @@ def menu():
         try:
             dataset = Dataset(name="Demo Manche", file_path=assets[0])
             dataset.afficher_apercu()
+
+            debut = time.time()
             lancer_enchere(dataset)
+            fin = time.time()
+            print(f"Temps de calcul : {fin - debut:.3f} secondes")
+
         except FileNotFoundError as e:
             print(f"Erreur : {e}")
 
@@ -66,7 +72,11 @@ def menu():
 
         dataset = Dataset(name="Manche Aléatoire", nb_joueurs=nb_joueurs, prix_max=prix_max)
         dataset.afficher_apercu()
+
+        debut = time.time()
         lancer_enchere(dataset)
+        fin = time.time()
+        print(f"Temps de calcul : {fin - debut:.3f} secondes")
 
     elif choix == "3":
         try:
