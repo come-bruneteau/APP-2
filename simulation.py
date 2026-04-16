@@ -61,4 +61,5 @@ def simuler_multi_manches(nb_manches=500, nb_joueurs=40, alpha=10.0):
         print(f"  Bilan financier net (gain moyen par joueur) : {gain_net_moyen:.2f} €\n")
 
 # Lancement de la simulation après la manche de démonstration
-simuler_multi_manches(nb_manches=500, nb_joueurs=40, alpha=10.0)
+if __name__ == "__main__":
+    simuler_multi_manches(nb_manches=500, nb_joueurs=40, alpha=10.0)
