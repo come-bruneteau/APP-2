@@ -26,7 +26,7 @@ class Dataset:
     #mode génération aléatoire
 
     def _generer(self, nb_joueurs, prix_max):
-        """Génère un jeu de données aléatoire : chaque joueur propose un prix entier."""
+        """Génère données aléatoire, chaque joueur propose un prix entier."""
         data = []
         for i in range(nb_joueurs):
             joueur = f"Joueur_{i+1}"
@@ -40,14 +40,6 @@ class Dataset:
             writer = csv.writer(f)
             writer.writerows(self.data)
         print(f"Données sauvegardés dans : {file_path}")
- 
-    def afficher_apercu(self, nb_lignes=5):
-        """Affiche les premières lignes"""
-        print(f"\n--- Aperçu du dataset '{self.name}' ({len(self.data)} entrées) ---")
-        for ligne in self.data[:nb_lignes]:
-            print(f"  Joueur: {ligne[0]}, Prix: {ligne[1]}")
-        if len(self.data) > nb_lignes:
-            print(f"  ... {len(self.data) - nb_lignes} ")
  
     def __len__(self):
         return len(self.data)
